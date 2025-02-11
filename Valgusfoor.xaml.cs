@@ -35,7 +35,7 @@ public partial class Valgusfoor : ContentPage
         BoxView yellowLight = lights[1];
         BoxView greenLight = lights[2];
 
-        var redTapGestureRecognizer = new TapGestureRecognizer(); //detects taps
+        var redTapGestureRecognizer = new TapGestureRecognizer(); 
         redTapGestureRecognizer.Tapped += (s, e) => OnLightTapped("red");
 
         var yellowTapGestureRecognizer = new TapGestureRecognizer();
@@ -44,7 +44,7 @@ public partial class Valgusfoor : ContentPage
         var greenTapGestureRecognizer = new TapGestureRecognizer();
         greenTapGestureRecognizer.Tapped += (s, e) => OnLightTapped("green");
 
-        redLight.GestureRecognizers.Add(redTapGestureRecognizer); //detects if tapped on redlight like trigger
+        redLight.GestureRecognizers.Add(redTapGestureRecognizer); 
         yellowLight.GestureRecognizers.Add(yellowTapGestureRecognizer);
         greenLight.GestureRecognizers.Add(greenTapGestureRecognizer);
 
@@ -88,7 +88,7 @@ public partial class Valgusfoor : ContentPage
         StackLayout mainL = new StackLayout
         {
             Children = { statusLbl, lightStack, on_btn, off_btn },
-            Padding = new Thickness(20) //to all four sides : new Thickness(left, top, right, bottom);
+            Padding = new Thickness(20) 
         };
 
         Content = mainL;
@@ -117,7 +117,7 @@ public partial class Valgusfoor : ContentPage
     {
         trafficLight = true;
 
-        //Here must be auto trafficligh!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
     }
     
 
