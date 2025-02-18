@@ -4,7 +4,7 @@ public partial class Valgusfoor : ContentPage
     bool trafficLight = false;
     List<BoxView> lights;
     Label statusLbl;
-    String turnONTxt = "First turn on the traffic light!";
+    String turnONTxt = "Lülitage esmalt valgusfoor sisse!";
     public Valgusfoor(int k)
     {
         Title = "Valgusfoor";
@@ -110,7 +110,7 @@ public partial class Valgusfoor : ContentPage
         lights[1].Color = Colors.Yellow;
         lights[2].Color = Colors.Green;
 
-        statusLbl.Text = "Press the light";
+        statusLbl.Text = "Klõpsake värvil";
     }
 
     private async void auto_btn_clicked(object? sender, EventArgs e)
@@ -132,13 +132,13 @@ public partial class Valgusfoor : ContentPage
         switch (color)
         {
             case "red":
-                statusLbl.Text = "Stop";
+                statusLbl.Text = "Peatus";
                 break;
             case "yellow":
-                statusLbl.Text = "Be patient!";
+                statusLbl.Text = "Oota!";
                 break;
             case "green":
-                statusLbl.Text = "Go";
+                statusLbl.Text = "Sa võid minna";
                 break;
         }
     }
