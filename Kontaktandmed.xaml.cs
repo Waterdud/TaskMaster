@@ -8,7 +8,7 @@ namespace TaskMaster
         // Because it dynamically saves and easily syncs with all Contact list variable.
         public ObservableCollection<Contact> Contacts { get; set; }
 
-        public Kontaktandmed()
+        public Kontaktandmed(int v)
         {
             InitializeComponent();
 
