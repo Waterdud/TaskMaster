@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace TaskMaster
 {
@@ -15,7 +15,7 @@ namespace TaskMaster
             // Creating contact demo.
             Contacts = new ObservableCollection<Contact>
             {
-                new Contact { Name = "Example", Photo = "default.png", Email = "example@example.com",Phone = "123456789", Description="Test test hello world" }
+                new Contact { Name = "Dimasik", Photo = "dimas.jpg", Email = "dimitri.larionov1@gmail.com",Phone = "56997464", Description="What supp" }
             };
 
             ContactPicker.ItemsSource = Contacts;
@@ -35,7 +35,7 @@ namespace TaskMaster
             var selectedContact = ContactPicker.SelectedItem as Contact;
             if (selectedContact != null && !string.IsNullOrEmpty(selectedContact.Phone))
             {
-                Uri smsUri = new Uri($"sms:{selectedContact.Phone}?body=Hello world!");
+                Uri smsUri = new Uri($"sms:{selectedContact.Phone}?body=Здраствуйте Димитрий, у меня к вам предложение погулять!");
                 await Launcher.OpenAsync(smsUri);
             }
             else
