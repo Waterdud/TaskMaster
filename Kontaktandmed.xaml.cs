@@ -13,7 +13,7 @@ namespace TaskMaster
         Image photo;
         Button takePhotoButton, pickPhotoButton, callButton, smsButton, emailButton, contactListButton;
 
-        public Kontaktandmed(int v)
+        public Kontaktandmed(int k)
         {
             InitializeComponent();
 
@@ -30,6 +30,7 @@ namespace TaskMaster
             smsButton = new Button { Text = "Отправить SMS" };
             emailButton = new Button { Text = "Отправить Email" };
             photo = new Image { HeightRequest = 300 };
+            contactListButton = new Button { Text = "Контакт" };
 
             takePhotoButton.Clicked += async (s, e) => await TakePhoto();
             pickPhotoButton.Clicked += async (s, e) => await PickPhoto();
