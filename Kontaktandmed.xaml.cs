@@ -24,13 +24,13 @@ namespace TaskMaster
 
             ContactPicker.ItemsSource = Contacts;
 
-            takePhotoButton = new Button { Text = "Сделать фото" };
-            pickPhotoButton = new Button { Text = "Выбрать из галереи" };
-            callButton = new Button { Text = "Позвонить" };
-            smsButton = new Button { Text = "Отправить SMS" };
-            emailButton = new Button { Text = "Отправить Email" };
+            takePhotoButton = new Button { Text = "Tee foto" };
+            pickPhotoButton = new Button { Text = "Vali galeriist" };
+            callButton = new Button { Text = "Helista" };
+            smsButton = new Button { Text = "Saada SMS" };
+            emailButton = new Button { Text = "Saada Email" };
             photo = new Image { HeightRequest = 300 };
-            contactListButton = new Button { Text = "Контакт" };
+            contactListButton = new Button { Text = "Kontakt" };
 
             takePhotoButton.Clicked += async (s, e) => await TakePhoto();
             pickPhotoButton.Clicked += async (s, e) => await PickPhoto();
@@ -39,16 +39,18 @@ namespace TaskMaster
             emailButton.Clicked += EmailSendButton;
             contactListButton.Clicked += ViewContactListRedictPage;
 
-            var buttonStack = new StackLayout
-            {
-                Padding = 20,
-                VerticalOptions = LayoutOptions.Center,
-                Children = { takePhotoButton, pickPhotoButton, photo, callButton, smsButton, emailButton, contactListButton }
-            };
-
             this.Content = new StackLayout
             {
-                Children = { ContactPicker, buttonStack }
+                Children =
+                {
+                    ContactPicker,
+                    new StackLayout
+                    {
+                        Padding = 20,
+                        VerticalOptions = LayoutOptions.Center,
+                        Children = { takePhotoButton, pickPhotoButton, photo, callButton, smsButton, emailButton, contactListButton }
+                    }
+                }
             };
         }
 
@@ -65,7 +67,7 @@ namespace TaskMaster
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.Message, "OK");
+                await DisplayAlert("Viga", ex.Message, "OK");
             }
         }
 
@@ -82,7 +84,7 @@ namespace TaskMaster
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.Message, "OK");
+                await DisplayAlert("Viga", ex.Message, "OK");
             }
         }
 
@@ -100,12 +102,12 @@ namespace TaskMaster
             var selectedContact = ContactPicker.SelectedItem as Contact;
             if (selectedContact != null && !string.IsNullOrEmpty(selectedContact.Phone))
             {
-                Uri smsUri = new Uri($"sms:{selectedContact.Phone}?body=Здраствуйте Димитрий, у меня к вам предложение погулять!");
+                Uri smsUri = new Uri($"sms:{selectedContact.Phone}?body=Tere Dmitri, mul on sulle ettepanek jalutama minna!");
                 await Launcher.OpenAsync(smsUri);
             }
             else
             {
-                await DisplayAlert("Error", "Select contact!", "OK");
+                await DisplayAlert("Viga", "Vali kontakt!", "OK");
             }
         }
 
@@ -114,18 +116,103 @@ namespace TaskMaster
             var selectedContact = ContactPicker.SelectedItem as Contact;
             if (selectedContact != null && !string.IsNullOrEmpty(selectedContact.Email))
             {
-                Uri emailUri = new Uri($"mailto:{selectedContact.Email}?subject=Hello&body=World!");
+                Uri emailUri = new Uri($"mailto:{selectedContact.Email}?subject=Tere&body=Maailm!");
                 await Launcher.OpenAsync(emailUri);
             }
             else
             {
-                await DisplayAlert("Error", "Select contact!", "OK");
+                await DisplayAlert("Viga", "Vali kontakt!", "OK");
             }
         }
 
-        private async void ViewContactListRedictPage(object sender, EventArgs e)
+        private void ViewContactListRedictPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ContactsPage(Contacts));
+            var image = new Image
+            {
+                Source = "Resources/Images/dimas.jpg", // Используйте нужное изображение
+                HeightRequest = 100,
+                IsVisible = false // Скрыто изначально
+            };
+
+            var toggleSwitch = new Switch();
+            toggleSwitch.Toggled += (s, ev) => image.IsVisible = ev.Value; // Показываем/скрываем картинку
+
+            var tableView = new TableView
+            {
+                Intent = TableIntent.Form,
+                Root = new TableRoot("Kontaktandmed")
+                {
+                    new TableSection("Põhiandmed:")
+                    {
+                        new ViewCell
+                        {
+                            View = new StackLayout
+                            {
+                                Orientation = StackOrientation.Horizontal,
+                                Children =
+                                {
+                                    new Label { Text = "Nimi:", FontAttributes = FontAttributes.Bold, TextColor = Colors.Red },
+                                    new Entry { Placeholder = "Sisesta oma sõbra nimi" }
+                                }
+                            }
+                        }
+                    },
+                    new TableSection("Kontaktandmed:")
+                    {
+                        new ViewCell
+                        {
+                            View = new StackLayout
+                            {
+                                Orientation = StackOrientation.Horizontal,
+                                Children =
+                                {
+                                    new Label { Text = "Telefon", FontAttributes = FontAttributes.Bold, TextColor = Colors.Red },
+                                    new Entry { Placeholder = "Sisesta tel. number" }
+                                }
+                            }
+                        },
+                        new ViewCell
+                        {
+                            View = new StackLayout
+                            {
+                                Orientation = StackOrientation.Horizontal,
+                                Children =
+                                {
+                                    new Label { Text = "Email", FontAttributes = FontAttributes.Bold, TextColor = Colors.Red },
+                                    new Entry { Placeholder = "Sisesta email" }
+                                }
+                            }
+                        }
+                    },
+                    new TableSection
+                    {
+                        new ViewCell
+                        {
+                            View = new StackLayout
+                            {
+                                Orientation = StackOrientation.Horizontal,
+                                Children =
+                                {
+                                    new Label { Text = "Näita veel" },
+                                    toggleSwitch
+                                }
+                            }
+                        }
+                    },
+                    new TableSection("Foto:")
+                    {
+                        new ViewCell
+                        {
+                            View = new StackLayout
+                            {
+                                Children = { image }
+                            }
+                        }
+                    }
+                }
+            };
+
+            this.Content = tableView;
         }
     }
 }
