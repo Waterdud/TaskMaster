@@ -61,6 +61,9 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\fon.jpg" />
+	  <None Remove="Resources\Images\canada.png" />
+	  <None Remove="Resources\Images\defaultimage.jpg" />
+	  <None Remove="Resources\Images\eesti.png" />
 	  <None Remove="Resources\Images\krestik.png" />
 	  <None Remove="Resources\Images\nolik.png" />
 	</ItemGroup>
@@ -98,6 +101,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Kontaktandmed.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Riigid.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="tictactoe.xaml">

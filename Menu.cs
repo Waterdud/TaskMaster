@@ -5,8 +5,8 @@ namespace TaskMaster;
 
 internal class Menu : ContentPage
 {
-    List<ContentPage> pages = new List<ContentPage>() { new MainPage(0), new Valgusfoor(1), new RGB_mudel(2), new Lumememm(3), new tictactoe(4), new Kontaktandmed(5) };
-    List<string> txt = new List<string> { "Kodu", "Valgusfoor", "RGB Mudel", "Lumememm", "TicTacToe"," Kontaktandmed" };
+    List<ContentPage> pages = new List<ContentPage>() { new MainPage(0), new Valgusfoor(1), new RGB_mudel(2), new Lumememm(3), new tictactoe(4), new Kontaktandmed(5), new Riigid(6) };
+    List<string> txt = new List<string> { "Kodu", "Valgusfoor", "RGB Mudel", "Lumememm", "TicTacToe"," Kontaktandmed", "Riigid"};
     List<Button> btns = new List<Button>();
 
     public Menu()
